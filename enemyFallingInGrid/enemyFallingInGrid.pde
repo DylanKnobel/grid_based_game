@@ -4,6 +4,7 @@
 
 //globals
 int[][] board;
+int[][] enemy;
 int cols, rows;
 float cellWidth, cellHeight;
 int charX, charY;
@@ -11,8 +12,8 @@ int charX, charY;
 void setup() {
   size(800, 800);
 
-  cols = 10;
-  rows = 10;
+  cols = 100;
+  rows = 100;
 
   initializeValues();
   spawnEnemy();
@@ -28,10 +29,37 @@ void keyPressed() {
     characterMoveLeft();
   } else if (key == 'd') {
     characterMoveRight();
+  } if(key == 'w') {
+    characterMoveUp();
+  } else if(key == 's') {
+    characterMoveDown(); 
   }
 }
 
 void mousePressed() {
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
+  spawnEnemy();
   spawnEnemy();
 }
 
@@ -51,6 +79,7 @@ void moveEnemy() {
   }
 }
 
+//for enemy movement can use noise function
 void spawnEnemy() {
   int x = int(random(cols));
   board[x][0] = 2;
@@ -68,6 +97,22 @@ void characterMoveRight() {
   if (charX < cols-1) {
     board[charX][charY] = 0;
     charX++;
+    board[charX][charY] = 1;
+  }
+}
+
+void characterMoveUp() {
+  if (charY > 1) {
+    board[charX][charY] = 0;
+    charY--;
+    board[charX][charY] = 1;
+  }
+}
+
+void characterMoveDown() {
+  if (charY < rows-1) {
+    board[charX][charY] = 0;
+    charY++;
     board[charX][charY] = 1;
   }
 }
