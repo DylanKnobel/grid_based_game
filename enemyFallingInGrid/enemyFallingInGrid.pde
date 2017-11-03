@@ -29,31 +29,15 @@ void keyPressed() {
     characterMoveLeft();
   } else if (key == 'd') {
     characterMoveRight();
-  } if(key == 'w') {
+  } 
+  if (key == 'w') {
     characterMoveUp();
-  } else if(key == 's') {
-    characterMoveDown(); 
+  } else if (key == 's') {
+    characterMoveDown();
   }
 }
 
 void mousePressed() {
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
   spawnEnemy();
   spawnEnemy();
   spawnEnemy();
@@ -70,8 +54,14 @@ void moveEnemy() {
       for (int y=rows-1; y>=0; y--) {
         if (board[x][y] == 2) {  //enemy spot
           board[x][y] = 0;
-          if (y < rows-1) {  //don't go below the grid
-            board[x][y+1] = 2;
+          if (x > 0) {
+            if (y < rows-1) {  //don't go below the grid
+              board[x][y+1] = 2;
+            }
+          } else if (y > 0) {
+            if (x < cols-1) {  //don't go below the grid
+              board[x+1][y] = 2;
+            }
           }
         }
       }
@@ -82,6 +72,8 @@ void moveEnemy() {
 //for enemy movement can use noise function
 void spawnEnemy() {
   int x = int(random(cols));
+  int y = int(random(rows));
+  board[0][y] = 2;
   board[x][0] = 2;
 }
 
