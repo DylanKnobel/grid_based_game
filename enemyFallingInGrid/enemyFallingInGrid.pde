@@ -10,18 +10,20 @@ float cellWidth, cellHeight;
 int charX, charY;
 
 void setup() {
-  size(800, 800);
+  //size(800, 800);
+  fullScreen();
 
-  cols = 80;
-  rows = 80;
+  cols = 200;
+  rows = 100;
 
   initializeValues();
-  spawnEnemy();
+  
 }
 
 void draw() {
   moveEnemy();
   displayBoard();
+  spawnEnemy();
 }
 
 void keyPressed() {
@@ -78,6 +80,7 @@ void spawnEnemy() {
   int y = int(random(rows));
   board[0][y] = 3;
   board[x][0] = 2;
+  //board[x][y] = 4;
 }
 
 void characterMoveLeft() {
@@ -124,6 +127,8 @@ void displayBoard() {
         fill(255, 0, 0);
       } else if (board[x][y] == 0) {
         fill(255); //empty
+      }else if(board[x][y] == 4){
+       fill(0); 
       }
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
@@ -139,4 +144,11 @@ void initializeValues() {
   charX = cols/2;
   charY = rows-1;
   board[charX][charY] = 1;
+}
+
+void deathScreen(){
+  if(board[charX][charY] != 1){
+   background(255);
+   
+  }
 }
