@@ -12,8 +12,8 @@ int charX, charY;
 void setup() {
   size(800, 800);
 
-  cols = 100;
-  rows = 100;
+  cols = 80;
+  rows = 80;
 
   initializeValues();
   spawnEnemy();
@@ -48,19 +48,22 @@ void mousePressed() {
 }
 
 void moveEnemy() {
-  if (frameCount % 30 == 0) {
+  if (frameCount % 15 == 0) {
 
     for (int x=cols-1; x>=0; x--) {
       for (int y=rows-1; y>=0; y--) {
-        if (board[x][y] == 2) {  //enemy spot
-          board[x][y] = 0;
-          if (x > 0) {
+        if (x>0) {
+          if (board[x][y] == 2) {  //enemy spot
+            board[x][y] = 0;
             if (y < rows-1) {  //don't go below the grid
               board[x][y+1] = 2;
             }
-          } else if (y > 0) {
-            if (x < cols-1) {  //don't go below the grid
-              board[x+1][y] = 2;
+          }
+        } if (y>0 || y> 0 && x>0) {
+          if (board[x][y] == 3) {  //enemy spot
+            board[x][y] = 0;
+            if (x < rows-1) {  //don't go below the grid
+              board[x+1][y] = 3;
             }
           }
         }
@@ -73,7 +76,7 @@ void moveEnemy() {
 void spawnEnemy() {
   int x = int(random(cols));
   int y = int(random(rows));
-  board[0][y] = 2;
+  board[0][y] = 3;
   board[x][0] = 2;
 }
 
@@ -116,6 +119,8 @@ void displayBoard() {
       if (board[x][y] == 1) {
         fill(0);  //character
       } else if (board[x][y] == 2) {
+        fill(255, 0, 0);
+      } else if (board[x][y] == 3) {
         fill(255, 0, 0);
       } else if (board[x][y] == 0) {
         fill(255); //empty
