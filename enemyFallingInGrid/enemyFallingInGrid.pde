@@ -13,8 +13,8 @@ void setup() {
   //size(800, 800);
   fullScreen();
 
-  cols = 200;
-  rows = 100;
+  cols = width/8;
+  rows = height/8;
 
   initializeValues();
   
@@ -39,18 +39,8 @@ void keyPressed() {
   }
 }
 
-void mousePressed() {
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-  spawnEnemy();
-}
-
 void moveEnemy() {
-  if (frameCount % 15 == 0) {
+  if (frameCount % 5 == 0) {
 
     for (int x=cols-1; x>=0; x--) {
       for (int y=rows-1; y>=0; y--) {
@@ -64,7 +54,7 @@ void moveEnemy() {
         } if (y>0 || y> 0 && x>0) {
           if (board[x][y] == 3) {  //enemy spot
             board[x][y] = 0;
-            if (x < rows-1) {  //don't go below the grid
+            if (x < cols-1) {  //don't go below the grid
               board[x+1][y] = 3;
             }
           }
@@ -127,8 +117,8 @@ void displayBoard() {
         fill(255, 0, 0);
       } else if (board[x][y] == 0) {
         fill(255); //empty
-      }else if(board[x][y] == 4){
-       fill(0); 
+      //}else if(board[x][y] == 4){
+      // fill(0); 
       }
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
     }
@@ -146,9 +136,9 @@ void initializeValues() {
   board[charX][charY] = 1;
 }
 
-void deathScreen(){
-  if(board[charX][charY] != 1){
-   background(255);
+//void deathScreen(){
+//  if(board[charX][charY] != 1){
+//   background(255);
    
-  }
-}
+//  }
+//}
